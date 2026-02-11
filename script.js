@@ -1,0 +1,1 @@
+console.log("Go Up Follow website loaded");
