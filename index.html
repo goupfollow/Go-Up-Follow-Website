@@ -1,59 +1,163 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>App Download</title>
+<meta charset="UTF-8">
+<title>Go Up Follow</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#0b1220,#020617);
+  color:#fff;
+}
+
+.container{
+  max-width:420px;
+  margin:20px auto;
+  padding:10px;
+}
+
+.card{
+  background:#020617;
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:16px;
+  position:relative;
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:18px;
+  padding:2px;
+  background:linear-gradient(135deg,#22c55e,#a855f7);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
+}
+
+h2{
+  font-size:18px;
+  margin:0 0 10px;
+}
+
+p{
+  font-size:14px;
+  opacity:.85;
+}
+
+.btn{
+  width:100%;
+  border:none;
+  border-radius:14px;
+  padding:14px;
+  font-size:15px;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+.latest{
+  background:#a855f7;
+  color:#fff;
+}
+
+.old{
+  background:#374151;
+  color:#fff;
+}
+
+.count{
+  margin-top:10px;
+  text-align:center;
+  font-size:14px;
+  opacity:.9;
+}
+</style>
 </head>
 
 <body>
+<div class="container">
 
-<h2>🔔 Notice</h2>
-<p>
-When installing the app, if system shows <b>App Scan Recommended</b>,
-please scan and install the app.
-</p>
+<div class="card">
+<h2>📱 About App</h2>
+<p>Go Up Follow is a simple and lightweight app designed to help users grow their social presence easily.</p>
+</div>
 
-<h2>🚀 Update Notice</h2>
-<p>
-Latest version <b>2.1</b> is available.
-</p>
+<div class="card">
+<h2>⬇ Download APK</h2>
 
-<h2>ℹ️ About App</h2>
-<p>
-This app provides useful features for users.
-</p>
+<p><b>Latest Version: 2.1</b></p>
+<button class="btn latest" onclick="download('latest21',
+'https://github.com/user-attachments/files/25251966/Go.Up.Follow.2.1.UPDATED.zip')">
+⬇ Download Latest Version
+</button>
+<div class="count">Downloads: <span id="latest21">999</span></div>
 
-<hr>
+<hr style="opacity:.2;margin:14px 0">
 
-<h2>🔥 Latest Version</h2>
-<p>
-Version: <b>2.1</b><br>
-Downloads: <span id="latestCount">...</span><br>
-<a href="https://github.com/user-attachments/files/25251966/Go.Up.Follow.2.1.UPDATED.zip" download id="latestBtn"
-   onclick="downloadLatest()">Download v2.1</a>
-</p>
+<p><b>Old Version: 2.0</b></p>
+<button class="btn old" onclick="download('old20',
+'https://github.com/user-attachments/files/25226641/Go.Up.Follow.2.0.UPDATED.zip')">
+⬇ Download Old Version
+</button>
+<div class="count">Downloads: <span id="old20">999</span></div>
 
-<hr>
+<hr style="opacity:.2;margin:14px 0">
 
-<h2>📦 Old Versions</h2>
+<p><b>Old Version: 1.0</b></p>
+<button class="btn old" onclick="download('v10',
+'https://github.com/user-attachments/files/25226568/Go.Up.Follow.1.0.zip')">
+⬇ Download Old Version
+</button>
+<div class="count">Downloads: <span id="v10">999</span></div>
 
-<p>
-Version: <b>2.0</b><br>
-Downloads: <span id="oldCount">...</span><br>
-<a href="https://github.com/user-attachments/files/25226641/Go.Up.Follow.2.0.UPDATED.zip" download id="oldBtn"
-   onclick="downloadOld()">Download v2.0</a>
-</p>
+</div>
+</div>
 
-<p>
-Version: <b>1.0</b><br>
-Downloads: <span id="v1Count">...</span><br>
-<a href="https://github.com/user-attachments/files/25226568/Go.Up.Follow.1.0.zip" download id="v1Btn"
-   onclick="downloadV1()">Download v1.0</a>
-</p>
+<!-- 🔥 FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, get, set, increment, update } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-<script src="script.js"></script>
+const firebaseConfig = {
+  apiKey: "AIzaSyBRd3OAmqWNNrg4wG6ETuLSvzJAUPb_rr4",
+  authDomain: "count-b638f.firebaseapp.com",
+  projectId: "count-b638f",
+  storageBucket: "count-b638f.firebasestorage.app",
+  messagingSenderId: "595930590603",
+  appId: "1:595930590603:web:78629be40b7da8a28ad38e"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const keys = ["latest21","old20","v10"];
+
+keys.forEach(k=>{
+  const r = ref(db,"downloads/"+k);
+  get(r).then(s=>{
+    if(!s.exists()){
+      set(r,999);
+      document.getElementById(k).innerText=999;
+    }else{
+      document.getElementById(k).innerText=s.val();
+    }
+  });
+});
+
+window.download = function(key,link){
+  const r = ref(db,"downloads/"+key);
+  update(ref(db,"downloads"),{
+    [key]: increment(1)
+  });
+  window.location.href = link;
+}
+</script>
+
 </body>
 </html>
