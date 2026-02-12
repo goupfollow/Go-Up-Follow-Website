@@ -2,89 +2,81 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Go Up Follow – Official Download</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <title>App Download</title>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #f5f7fa;
+      padding: 20px;
+    }
+    .box {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.08);
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 15px;
+      background: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 8px;
+    }
+    .btn.old { background:#6c757d }
+  </style>
 </head>
+
 <body>
 
-<div class="container">
-
-  <!-- NOTICE -->
-  <div class="box notice">
-    <h2>🔔 Notice</h2>
-    <p>
-      When installing the app, if the system shows
-      <b>"App Scan Recommended"</b>,
-      then please scan and install the app.
-    </p>
-  </div>
-
-  <!-- UPDATE NOTICE -->
-  <div class="box update">
-    <h2>⬆ Update Notice</h2>
-    <p>
-      Always use the latest version for best performance and security.
-    </p>
-  </div>
-
-  <!-- ABOUT APP -->
-  <div class="box about">
-    <h2>📱 About App</h2>
-    <p>
-      <b>Go Up Follow</b> helps users grow their social media presence
-      easily and quickly.  
-      Lightweight, simple and regularly updated.
-    </p>
-  </div>
-
-  <!-- LATEST VERSION -->
-  <div class="box download">
-    <h2>⬇ Download Latest Version</h2>
-    <p>Version: <b>2.1</b> | Size: <b>13 MB</b></p>
-
-    <a href="https://github.com/user-attachments/files/25251966/Go.Up.Follow.2.1.UPDATED.zip" download class="btn" onclick="countLatest()">
-      📥 Download v2.1 (Latest)
-    </a>
-
-    <p class="count">
-      Downloads: <span id="latestCount">0</span>
-    </p>
-  </div>
-
-  <!-- OLD VERSION 2.0 -->
-  <div class="box download oldbox">
-    <h2>⬇ Download Old Version</h2>
-    <p>Version: <b>2.0</b> | Size: <b>12 MB</b></p>
-
-    <a href="https://github.com/user-attachments/files/25226641/Go.Up.Follow.2.0.UPDATED.zip" download class="btn old" onclick="countOld20()">
-      📥 Download v2.0
-    </a>
-
-    <p class="count">
-      Downloads: <span id="old20Count">0</span>
-    </p>
-  </div>
-
-  <!-- OLD VERSION 1.0 -->
-  <div class="box download oldbox">
-    <h2>⬇ Download Old Version</h2>
-    <p>Version: <b>1.0</b> | Size: <b>10 MB</b></p>
-
-    <a href="https://github.com/user-attachments/files/25226568/Go.Up.Follow.1.0.zip" download class="btn old" onclick="countOld10()">
-      📥 Download v1.0
-    </a>
-
-    <p class="count">
-      Downloads: <span id="old10Count">0</span>
-    </p>
-  </div>
-
+<!-- 🔔 Notice -->
+<div class="box">
+  <b>🔔 Notice</b><br>
+  When installing the app, if system shows <b>App Scan Recommended</b>, please scan and install safely.
 </div>
 
-<!-- Firebase SDK (COMPAT – IMPORTANT) -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<!-- 🚀 Update Notice -->
+<div class="box">
+  <b>🚀 Update Notice</b><br>
+  New version <b>2.1</b> is available with improvements and bug fixes.
+</div>
+
+<!-- ℹ️ About App -->
+<div class="box">
+  <b>ℹ️ About App</b><br>
+  This app helps users with powerful features and smooth performance.
+</div>
+
+<!-- 🔥 Latest -->
+<div class="box">
+  <h3>🔥 Latest Version 2.1</h3>
+  Downloads: <span id="latestCount">...</span><br>
+  <a href="https://github.com/user-attachments/files/25251966/Go.Up.Follow.2.1.UPDATED.zip" download class="btn" id="latestBtn"
+     onclick="downloadLatest()">Download v2.1</a>
+</div>
+
+<!-- 🕘 Old -->
+<div class="box">
+  <h3>🕘 Old Version 2.0</h3>
+  Downloads: <span id="oldCount">...</span><br>
+  <a href="https://github.com/user-attachments/files/25226641/Go.Up.Follow.2.0.UPDATED.zip" download class="btn old" id="oldBtn"
+     onclick="downloadOld()">Download v2.0</a>
+</div>
+
+<!-- 📦 Very Old -->
+<div class="box">
+  <h3>📦 Old Version 1.0</h3>
+  Downloads: <span id="v1Count">...</span><br>
+  <a href="https://github.com/user-attachments/files/25226568/Go.Up.Follow.1.0.zip" download class="btn old" id="v1Btn"
+     onclick="downloadV1()">Download v1.0</a>
+</div>
 
 <script src="script.js"></script>
 </body>
