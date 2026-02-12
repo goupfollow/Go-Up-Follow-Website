@@ -10,31 +10,31 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+
 const ref = db.collection("downloads").doc("counter");
 
-// Live counters
-ref.onSnapshot(doc=>{
-  if(!doc.exists) return;
-  latestCount.innerText = doc.data().latest21;
-  old20Count.innerText  = doc.data().old20;
-  v1Count.innerText     = doc.data().v10;
+ref.onSnapshot(doc => {
+  if(doc.exists){
+    latest21.innerText = doc.data().latest21;
+    old20.innerText    = doc.data().old20;
+    v10.innerText      = doc.data().v10;
+  }
 });
 
-// Handlers
 function downloadLatest(){
-  latestBtn.disabled = true;
   ref.update({ latest21: firebase.firestore.FieldValue.increment(1) });
-  window.location.href = "app_v2_1.apk";
+  window.location.href =
+  "https://github.com/user-attachments/files/25251966/Go.Up.Follow.2.1.UPDATED.zip";
 }
 
 function downloadOld20(){
-  old20Btn.disabled = true;
   ref.update({ old20: firebase.firestore.FieldValue.increment(1) });
-  window.location.href = "app_v2_0.apk";
+  window.location.href =
+  "https://github.com/user-attachments/files/25226641/Go.Up.Follow.2.0.UPDATED.zip";
 }
 
-function downloadV1(){
-  old10Btn.disabled = true;
+function downloadV10(){
   ref.update({ v10: firebase.firestore.FieldValue.increment(1) });
-  window.location.href = "app_v1_0.apk";
+  window.location.href =
+  "https://github.com/user-attachments/files/25226568/Go.Up.Follow.1.0.zip";
 }
