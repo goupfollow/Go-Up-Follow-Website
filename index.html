@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Go Up Follow – Download</title>
+  <title>Go Up Follow – Official Download</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -11,56 +11,80 @@
 <div class="container">
 
   <!-- NOTICE -->
-  <div class="card notice">
-    <h3>🔔 Notice</h3>
+  <div class="box notice">
+    <h2>🔔 Notice</h2>
     <p>
       When installing the app, if the system shows
       <b>"App Scan Recommended"</b>,
-      please scan and then install the app.
+      then please scan and install the app.
     </p>
   </div>
 
   <!-- UPDATE NOTICE -->
-  <div class="card update">
-    <h3>⬆ Update Notice</h3>
+  <div class="box update">
+    <h2>⬆ Update Notice</h2>
     <p>
-      Always use the latest version of the app
-      for better performance and stability.
+      Always use the latest version for best performance and security.
     </p>
   </div>
 
   <!-- ABOUT APP -->
-  <div class="card about">
-    <h3>📱 About App</h3>
+  <div class="box about">
+    <h2>📱 About App</h2>
     <p>
-      <b>Go Up Follow</b> is a simple and lightweight app
-      designed to help users grow their social presence
-      quickly and easily.
+      <b>Go Up Follow</b> helps users grow their social media presence
+      easily and quickly.  
+      Lightweight, simple and regularly updated.
     </p>
   </div>
 
-  <!-- DOWNLOAD SECTION -->
-  <div class="card download">
-    <h3>⬇ Download APK</h3>
+  <!-- LATEST VERSION -->
+  <div class="box download">
+    <h2>⬇ Download Latest Version</h2>
+    <p>Version: <b>2.1</b> | Size: <b>13 MB</b></p>
 
-    <p class="info">Latest Version: 2.0 • Size: 12 MB</p>
-    <a href="https://github.com/user-attachments/files/25226641/Go.Up.Follow.2.0.UPDATED.zip" download class="btn" onclick="addDownload()">
-      📥 Download Latest Version
-    </a>
-
-    <hr class="line">
-
-    <p class="info">Old Version: 1.0</p>
-    <a href="https://github.com/user-attachments/files/25226568/Go.Up.Follow.1.0.zip" download class="btn old">
-      ⏬ Download Old Version
+    <a href="https://github.com/user-attachments/files/25251966/Go.Up.Follow.2.1.UPDATED.zip" download class="btn" onclick="countLatest()">
+      📥 Download v2.1 (Latest)
     </a>
 
     <p class="count">
-      Total Downloads: <span id="count">0</span>
+      Downloads: <span id="latestCount">0</span>
+    </p>
+  </div>
+
+  <!-- OLD VERSION 2.0 -->
+  <div class="box download oldbox">
+    <h2>⬇ Download Old Version</h2>
+    <p>Version: <b>2.0</b> | Size: <b>12 MB</b></p>
+
+    <a href="https://github.com/user-attachments/files/25226641/Go.Up.Follow.2.0.UPDATED.zip" download class="btn old" onclick="countOld20()">
+      📥 Download v2.0
+    </a>
+
+    <p class="count">
+      Downloads: <span id="old20Count">0</span>
+    </p>
+  </div>
+
+  <!-- OLD VERSION 1.0 -->
+  <div class="box download oldbox">
+    <h2>⬇ Download Old Version</h2>
+    <p>Version: <b>1.0</b> | Size: <b>10 MB</b></p>
+
+    <a href="https://github.com/user-attachments/files/25226568/Go.Up.Follow.1.0.zip" download class="btn old" onclick="countOld10()">
+      📥 Download v1.0
+    </a>
+
+    <p class="count">
+      Downloads: <span id="old10Count">0</span>
     </p>
   </div>
 
 </div>
+
+<!-- Firebase SDK (COMPAT – IMPORTANT) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <script src="script.js"></script>
 </body>
