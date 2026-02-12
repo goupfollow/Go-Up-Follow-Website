@@ -2,162 +2,138 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Go Up Follow</title>
+<title>Go Up Follow – Download</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <style>
 body{
   margin:0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(135deg,#0b1220,#020617);
+  background:#0b1220;
   color:#fff;
 }
 
 .container{
   max-width:420px;
   margin:20px auto;
-  padding:10px;
+  padding:15px;
 }
 
 .card{
-  background:#020617;
-  border-radius:18px;
-  padding:18px;
-  margin-bottom:16px;
-  position:relative;
+  background:#0f172a;
+  border-radius:14px;
+  padding:16px;
+  margin-bottom:15px;
+  box-shadow:0 0 15px rgba(0,0,0,0.4);
 }
 
-.card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:18px;
-  padding:2px;
-  background:linear-gradient(135deg,#22c55e,#a855f7);
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;
-          mask-composite:exclude;
+.card h3{
+  margin:0 0 8px;
 }
 
-h2{
-  font-size:18px;
-  margin:0 0 10px;
+.notice{
+  border-left:4px solid #38bdf8;
 }
 
-p{
-  font-size:14px;
-  opacity:.85;
+.update{
+  border-left:4px solid #22c55e;
+}
+
+.download{
+  border-left:4px solid #a855f7;
 }
 
 .btn{
+  display:block;
   width:100%;
-  border:none;
-  border-radius:14px;
   padding:14px;
-  font-size:15px;
+  border-radius:12px;
+  border:none;
+  font-size:16px;
+  font-weight:bold;
   cursor:pointer;
   margin-top:10px;
 }
 
 .latest{
-  background:#a855f7;
+  background:#8b5cf6;
   color:#fff;
 }
 
 .old{
-  background:#374151;
+  background:#475569;
   color:#fff;
 }
 
 .count{
-  margin-top:10px;
-  text-align:center;
+  margin-top:8px;
+  opacity:0.85;
   font-size:14px;
-  opacity:.9;
 }
 </style>
 </head>
 
 <body>
+
 <div class="container">
 
-<div class="card">
-<h2>📱 About App</h2>
-<p>Go Up Follow is a simple and lightweight app designed to help users grow their social presence easily.</p>
+  <!-- NOTICE -->
+  <div class="card notice">
+    <h3>🔔 Notice</h3>
+    <p>
+      When installing the app, if your system shows
+      <b>“App Scan Recommended”</b>, please scan the app and then continue
+      the installation. This is a normal Android security check.
+    </p>
+  </div>
+
+  <!-- UPDATE NOTICE -->
+  <div class="card update">
+    <h3>🚀 Update Notice</h3>
+    <p>
+      A new version <b>v2.1</b> is available with improved performance and
+      stability. Please use the latest version.
+    </p>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="card">
+    <h3>ℹ️ About App</h3>
+    <p>
+      Go Up Follow is a lightweight app designed to help users grow their
+      social presence easily and quickly.
+    </p>
+  </div>
+
+  <!-- DOWNLOAD -->
+  <div class="card download">
+    <h3>⬇ Download APK</h3>
+
+    <button class="btn latest" onclick="downloadLatest()">
+      Download Latest Version (2.1)
+    </button>
+    <div class="count">Downloads: <span id="latest21">...</span></div>
+
+    <hr style="opacity:0.2;margin:15px 0">
+
+    <button class="btn old" onclick="downloadOld20()">
+      Download Old Version (2.0)
+    </button>
+    <div class="count">Downloads: <span id="old20">...</span></div>
+
+    <button class="btn old" onclick="downloadV10()">
+      Download Old Version (1.0)
+    </button>
+    <div class="count">Downloads: <span id="v10">...</span></div>
+  </div>
+
 </div>
 
-<div class="card">
-<h2>⬇ Download APK</h2>
-
-<p><b>Latest Version: 2.1</b></p>
-<button class="btn latest" onclick="download('latest21',
-'https://github.com/user-attachments/files/25251966/Go.Up.Follow.2.1.UPDATED.zip')">
-⬇ Download Latest Version
-</button>
-<div class="count">Downloads: <span id="latest21">999</span></div>
-
-<hr style="opacity:.2;margin:14px 0">
-
-<p><b>Old Version: 2.0</b></p>
-<button class="btn old" onclick="download('old20',
-'https://github.com/user-attachments/files/25226641/Go.Up.Follow.2.0.UPDATED.zip')">
-⬇ Download Old Version
-</button>
-<div class="count">Downloads: <span id="old20">999</span></div>
-
-<hr style="opacity:.2;margin:14px 0">
-
-<p><b>Old Version: 1.0</b></p>
-<button class="btn old" onclick="download('v10',
-'https://github.com/user-attachments/files/25226568/Go.Up.Follow.1.0.zip')">
-⬇ Download Old Version
-</button>
-<div class="count">Downloads: <span id="v10">999</span></div>
-
-</div>
-</div>
-
-<!-- 🔥 FIREBASE -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, get, set, increment, update } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBRd3OAmqWNNrg4wG6ETuLSvzJAUPb_rr4",
-  authDomain: "count-b638f.firebaseapp.com",
-  projectId: "count-b638f",
-  storageBucket: "count-b638f.firebasestorage.app",
-  messagingSenderId: "595930590603",
-  appId: "1:595930590603:web:78629be40b7da8a28ad38e"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-const keys = ["latest21","old20","v10"];
-
-keys.forEach(k=>{
-  const r = ref(db,"downloads/"+k);
-  get(r).then(s=>{
-    if(!s.exists()){
-      set(r,999);
-      document.getElementById(k).innerText=999;
-    }else{
-      document.getElementById(k).innerText=s.val();
-    }
-  });
-});
-
-window.download = function(key,link){
-  const r = ref(db,"downloads/"+key);
-  update(ref(db,"downloads"),{
-    [key]: increment(1)
-  });
-  window.location.href = link;
-}
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
