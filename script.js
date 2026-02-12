@@ -1,44 +1,42 @@
-// Firebase config (TERA HI)
+// 🔥 Latest Firebase Config
 const firebaseConfig = {
-  apiKey: "AIzaSyCu2nC3vQdrmS5uyGFgHxymZxI8obpK2kg",
-  authDomain: "count-9e4a6.firebaseapp.com",
-  projectId: "count-9e4a6",
-  storageBucket: "count-9e4a6.firebasestorage.app",
-  messagingSenderId: "26895308142",
-  appId: "1:26895308142:web:33ee494825605d52b39d7f"
+  apiKey: "AIzaSyBRd3OAmqWNNrg4wG6ETuLSvzJAUPb_rr4",
+  authDomain: "count-b638f.firebaseapp.com",
+  projectId: "count-b638f",
+  storageBucket: "count-b638f.firebasestorage.app",
+  messagingSenderId: "595930590603",
+  appId: "1:595930590603:web:78629be40b7da8a28ad38e",
+  measurementId: "G-XBGRFQF7K8"
 };
 
 // Init Firebase
 firebase.initializeApp(firebaseConfig);
-
-// Firestore
 const db = firebase.firestore();
-const ref = db.collection("downloads").doc("app");
 
-// REAL-TIME GLOBAL COUNTS
-ref.onSnapshot((doc)=>{
-  if(doc.exists){
+// Firestore ref
+const ref = db.collection("downloads").doc("counter");
+
+// 🔄 Live update
+ref.onSnapshot(doc => {
+  if (doc.exists) {
     document.getElementById("latestCount").innerText = doc.data().latest21;
-    document.getElementById("old20Count").innerText  = doc.data().old20;
-    document.getElementById("old10Count").innerText  = doc.data().old10;
+    document.getElementById("oldCount").innerText = doc.data().old20;
+    document.getElementById("v1Count").innerText = doc.data().v10;
   }
 });
 
-// Increment functions
-function countLatest(){
-  ref.update({
-    latest21: firebase.firestore.FieldValue.increment(1)
-  });
+// ⬇️ Download handlers
+function downloadLatest() {
+  document.getElementById("latestBtn").style.pointerEvents = "none";
+  ref.update({ latest21: firebase.firestore.FieldValue.increment(1) });
 }
 
-function countOld20(){
-  ref.update({
-    old20: firebase.firestore.FieldValue.increment(1)
-  });
+function downloadOld() {
+  document.getElementById("oldBtn").style.pointerEvents = "none";
+  ref.update({ old20: firebase.firestore.FieldValue.increment(1) });
 }
 
-function countOld10(){
-  ref.update({
-    old10: firebase.firestore.FieldValue.increment(1)
-  });
+function downloadV1() {
+  document.getElementById("v1Btn").style.pointerEvents = "none";
+  ref.update({ v10: firebase.firestore.FieldValue.increment(1) });
 }
