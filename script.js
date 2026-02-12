@@ -10,28 +10,31 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-
 const ref = db.collection("downloads").doc("counter");
 
-ref.onSnapshot(doc => {
-  if (doc.exists) {
-    document.getElementById("latestCount").innerText = doc.data().latest21;
-    document.getElementById("oldCount").innerText = doc.data().old20;
-    document.getElementById("v1Count").innerText = doc.data().v10;
-  }
+// Live counters
+ref.onSnapshot(doc=>{
+  if(!doc.exists) return;
+  latestCount.innerText = doc.data().latest21;
+  old20Count.innerText  = doc.data().old20;
+  v1Count.innerText     = doc.data().v10;
 });
 
-function downloadLatest() {
-  document.getElementById("latestBtn").style.pointerEvents = "none";
+// Handlers
+function downloadLatest(){
+  latestBtn.disabled = true;
   ref.update({ latest21: firebase.firestore.FieldValue.increment(1) });
+  window.location.href = "app_v2_1.apk";
 }
 
-function downloadOld() {
-  document.getElementById("oldBtn").style.pointerEvents = "none";
+function downloadOld20(){
+  old20Btn.disabled = true;
   ref.update({ old20: firebase.firestore.FieldValue.increment(1) });
+  window.location.href = "app_v2_0.apk";
 }
 
-function downloadV1() {
-  document.getElementById("v1Btn").style.pointerEvents = "none";
+function downloadV1(){
+  old10Btn.disabled = true;
   ref.update({ v10: firebase.firestore.FieldValue.increment(1) });
+  window.location.href = "app_v1_0.apk";
 }
