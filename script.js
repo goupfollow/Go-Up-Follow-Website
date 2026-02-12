@@ -1,4 +1,3 @@
-// 🔥 Latest Firebase Config
 const firebaseConfig = {
   apiKey: "AIzaSyBRd3OAmqWNNrg4wG6ETuLSvzJAUPb_rr4",
   authDomain: "count-b638f.firebaseapp.com",
@@ -9,14 +8,11 @@ const firebaseConfig = {
   measurementId: "G-XBGRFQF7K8"
 };
 
-// Init Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// Firestore ref
 const ref = db.collection("downloads").doc("counter");
 
-// 🔄 Live update
 ref.onSnapshot(doc => {
   if (doc.exists) {
     document.getElementById("latestCount").innerText = doc.data().latest21;
@@ -25,7 +21,6 @@ ref.onSnapshot(doc => {
   }
 });
 
-// ⬇️ Download handlers
 function downloadLatest() {
   document.getElementById("latestBtn").style.pointerEvents = "none";
   ref.update({ latest21: firebase.firestore.FieldValue.increment(1) });
