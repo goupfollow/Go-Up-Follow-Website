@@ -1,8 +1,8 @@
-let count = localStorage.getItem("apkDownloads") || 0;
-document.getElementById("downloadCount").innerText = count;
+let downloads = localStorage.getItem("downloads") || 0;
+document.getElementById("count").innerText = downloads;
 
-function countDownload(){
-  count++;
-  localStorage.setItem("apkDownloads", count);
-  document.getElementById("downloadCount").innerText = count;
+function addDownload(){
+  downloads++;
+  localStorage.setItem("downloads", downloads);
+  document.getElementById("count").innerText = downloads;
 }
