@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Go Up Follow – Official Download</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 15px;
+    }
+    .box {
+      background: #ffffff;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-top: 0;
+      color: #333;
+    }
+    .notice {
+      background: #fff3cd;
+      border-left: 5px solid #ffc107;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .update {
+      background: #e7f3ff;
+      border-left: 5px solid #2196f3;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      background: #4caf50;
+      color: #fff;
+      cursor: pointer;
+    }
+    button.old {
+      background: #607d8b;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    .count {
+      margin-top: 5px;
+      color: #555;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- NOTICE -->
+    <div class="box notice">
+      <strong>🔔 Notice</strong><br>
+      When installing the app, if your system shows <b>“App Scan Recommended”</b>,
+      please scan the app and then continue installation.  
+      This is a normal Android security check and the app is safe.
+    </div>
+
+    <!-- UPDATE NOTICE -->
+    <div class="box update">
+      <strong>🔄 Update Notice</strong><br>
+      Please always use the <b>latest version</b> of the app for best performance
+      and new features.
+    </div>
+
+    <!-- LATEST VERSION -->
+    <div class="box">
+      <h2>Latest Version – v2.1</h2>
+      <button onclick="downloadLatest()">Download v2.1</button>
+      <div class="count">Downloads: <span id="latest21">...</span></div>
+    </div>
+
+    <!-- OLD VERSION 2.0 -->
+    <div class="box">
+      <h2>Old Version – v2.0</h2>
+      <button class="old" onclick="downloadOld20()">Download v2.0</button>
+      <div class="count">Downloads: <span id="old20">...</span></div>
+    </div>
+
+    <!-- OLD VERSION 1.0 -->
+    <div class="box">
+      <h2>Old Version – v1.0</h2>
+      <button class="old" onclick="downloadV10()">Download v1.0</button>
+      <div class="count">Downloads: <span id="v10">...</span></div>
+    </div>
+
+  </div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <!-- App Script -->
+  <script src="script.js"></script>
+</body>
+</html>
