@@ -2,71 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Go Up Follow – Official Website</title>
+  <title>Go Up Follow – Official Download</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <h1>Go Up Follow</h1>
-  <p>Buy Followers, Likes & Views Easily</p>
-</header>
+<div class="container">
 
-<!-- NOTICE: APP SCAN -->
-<section class="card notice">
-  <h2>🔔 Notice</h2>
-  <p>
-    When you are installing the app, if the system shows
-    <b>"App Scan Recommended"</b>, then please scan and install the app.
-  </p>
-</section>
+  <!-- NOTICE -->
+  <div class="box notice">
+    <h2>🔔 Notice</h2>
+    <p>
+      When installing the app, if the system shows <b>"App Scan Recommended"</b>,
+      then please scan and install the app.
+    </p>
+  </div>
 
-<!-- NOTICE: UPDATE -->
-<section class="card notice update">
-  <h2>🔔 Update Notice</h2>
-  <p>
-    If the app shows <b>"Please Update The App"</b>,
-    click update and download the latest version from here.
-  </p>
-</section>
+  <!-- UPDATE NOTICE -->
+  <div class="box update">
+    <h2>⬆ Update Notice</h2>
+    <p>
+      A new version of the app may be available.
+      Please always use the latest version for best performance.
+    </p>
+  </div>
 
-<!-- ABOUT -->
-<section class="card">
-  <h2>📱 About App</h2>
-  <p>
-    Go Up Follow helps you grow your social media wiath fast and reliable services.
-    Easy to use, secure and trusted.
-  </p>
-</section>
+  <!-- ABOUT APP -->
+  <div class="box about">
+    <h2>📱 About App</h2>
+    <p>
+      <b>Go Up Follow</b> is designed to help users grow their social presence
+      with an easy and fast experience.  
+      The app is lightweight, simple to use, and regularly updated.
+    </p>
+  </div>
 
-<!-- LATEST DOWNLOAD -->
-<section class="card">
-  <h2>⬇️ Download Latest Version</h2>
-  <p><b>Version:</b> v2.0</p>
+  <!-- DOWNLOAD -->
+  <div class="box download">
+    <h2>⬇ Download APK</h2>
+    <p>Version: <b>2.0.0</b> | Size: <b>12 MB</b></p>
 
-  <!-- DIRECT DOWNLOAD (APK or ZIP) -->
-  <a class="btn"
-     href="https://github.com/user-attachments/files/25226641/Go.Up.Follow.2.0.UPDATED.zip"
-     download>
-     Download APK
-  </a>
-</section>
-
-<!-- OLD VERSION (SINGLE) -->
-<section class="card">
-  <h2>🗂 Old Version</h2>
-  <p>
-    <b>v1.0</b> –
-    <a href="https://github.com/user-attachments/files/25226568/Go.Up.Follow.1.0.zip" download>
-      Download APK
+    <a href="app.apk" download class="btn" onclick="countDownload()">
+      📥 Download Now
     </a>
-  </p>
-</section>
 
-<footer>
-  <p>© 2026 Go Up Follow. All rights reserved.</p>
-</footer>
+    <p class="count">
+      Downloads: <span id="downloadCount">0</span>
+    </p>
+  </div>
+
+</div>
 
 <script src="script.js"></script>
 </body>
