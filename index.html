@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Go Up Follow – Official Download</title>
+  <title>Go Up Follow – Download</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -11,44 +11,52 @@
 <div class="container">
 
   <!-- NOTICE -->
-  <div class="box notice">
-    <h2>🔔 Notice</h2>
+  <div class="card notice">
+    <h3>🔔 Notice</h3>
     <p>
-      When installing the app, if the system shows <b>"App Scan Recommended"</b>,
-      then please scan and install the app.
+      When installing the app, if the system shows
+      <b>"App Scan Recommended"</b>,
+      please scan and then install the app.
     </p>
   </div>
 
   <!-- UPDATE NOTICE -->
-  <div class="box update">
-    <h2>⬆ Update Notice</h2>
+  <div class="card update">
+    <h3>⬆ Update Notice</h3>
     <p>
-      A new version of the app may be available.
-      Please always use the latest version for best performance.
+      Always use the latest version of the app
+      for better performance and stability.
     </p>
   </div>
 
   <!-- ABOUT APP -->
-  <div class="box about">
-    <h2>📱 About App</h2>
+  <div class="card about">
+    <h3>📱 About App</h3>
     <p>
-      <b>Go Up Follow</b> is designed to help users grow their social presence
-      with an easy and fast experience.  
-      The app is lightweight, simple to use, and regularly updated.
+      <b>Go Up Follow</b> is a simple and lightweight app
+      designed to help users grow their social presence
+      quickly and easily.
     </p>
   </div>
 
-  <!-- DOWNLOAD -->
-  <div class="box download">
-    <h2>⬇ Download APK</h2>
-    <p>Version: <b>2.0.0</b> | Size: <b>12 MB</b></p>
+  <!-- DOWNLOAD SECTION -->
+  <div class="card download">
+    <h3>⬇ Download APK</h3>
 
-    <a href="app.apk" download class="btn" onclick="countDownload()">
-      📥 Download Now
+    <p class="info">Latest Version: 2.0.0 • Size: 12 MB</p>
+    <a href="app_latest.apk" download class="btn" onclick="addDownload()">
+      📥 Download Latest Version
+    </a>
+
+    <hr class="line">
+
+    <p class="info">Old Version: 1.5.0</p>
+    <a href="app_old.apk" download class="btn old">
+      ⏬ Download Old Version
     </a>
 
     <p class="count">
-      Downloads: <span id="downloadCount">0</span>
+      Total Downloads: <span id="count">0</span>
     </p>
   </div>
 
