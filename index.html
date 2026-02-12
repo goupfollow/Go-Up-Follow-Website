@@ -1,139 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Go Up Follow – Download</title>
+const firebaseConfig = {
+  apiKey: "AIzaSyBRd3OAmqWNNrg4wG6ETuLSvzJAUPb_rr4",
+  authDomain: "count-b638f.firebaseapp.com",
+  projectId: "count-b638f",
+  storageBucket: "count-b638f.firebasestorage.app",
+  messagingSenderId: "595930590603",
+  appId: "1:595930590603:web:78629be40b7da8a28ad38e",
+  measurementId: "G-XBGRFQF7K8"
+};
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+const latest21El = document.getElementById("latest21");
+const old20El    = document.getElementById("old20");
+const v10El      = document.getElementById("v10");
 
-<style>
-body{
-  margin:0;
-  font-family: Arial, sans-serif;
-  background:#0b1220;
-  color:#fff;
+const ref = db.collection("downloads").doc("counter");
+
+ref.onSnapshot((doc) => {
+  if (doc.exists) {
+    const data = doc.data();
+    latest21El.innerText = data.latest21;
+    old20El.innerText    = data.old20;
+    v10El.innerText      = data.v10;
+  } else {
+    latest21El.innerText = "0";
+    old20El.innerText = "0";
+    v10El.innerText = "0";
+  }
+});
+
+function downloadLatest() {
+  ref.update({
+    latest21: firebase.firestore.FieldValue.increment(1)
+  });
+  window.location.href =
+    "https://github.com/user-attachments/files/25251966/Go.Up.Follow.2.1.UPDATED.zip";
 }
 
-.container{
-  max-width:420px;
-  margin:20px auto;
-  padding:15px;
+function downloadOld20() {
+  ref.update({
+    old20: firebase.firestore.FieldValue.increment(1)
+  });
+  window.location.href =
+    "https://github.com/user-attachments/files/25226641/Go.Up.Follow.2.0.UPDATED.zip";
 }
 
-.card{
-  background:#0f172a;
-  border-radius:14px;
-  padding:16px;
-  margin-bottom:15px;
-  box-shadow:0 0 15px rgba(0,0,0,0.4);
+function downloadV10() {
+  ref.update({
+    v10: firebase.firestore.FieldValue.increment(1)
+  });
+  window.location.href =
+    "https://github.com/user-attachments/files/25226568/Go.Up.Follow.1.0.zip";
 }
-
-.card h3{
-  margin:0 0 8px;
-}
-
-.notice{
-  border-left:4px solid #38bdf8;
-}
-
-.update{
-  border-left:4px solid #22c55e;
-}
-
-.download{
-  border-left:4px solid #a855f7;
-}
-
-.btn{
-  display:block;
-  width:100%;
-  padding:14px;
-  border-radius:12px;
-  border:none;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
-  margin-top:10px;
-}
-
-.latest{
-  background:#8b5cf6;
-  color:#fff;
-}
-
-.old{
-  background:#475569;
-  color:#fff;
-}
-
-.count{
-  margin-top:8px;
-  opacity:0.85;
-  font-size:14px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-  <!-- NOTICE -->
-  <div class="card notice">
-    <h3>🔔 Notice</h3>
-    <p>
-      When installing the app, if your system shows
-      <b>“App Scan Recommended”</b>, please scan the app and then continue
-      the installation. This is a normal Android security check.
-    </p>
-  </div>
-
-  <!-- UPDATE NOTICE -->
-  <div class="card update">
-    <h3>🚀 Update Notice</h3>
-    <p>
-      A new version <b>v2.1</b> is available with improved performance and
-      stability. Please use the latest version.
-    </p>
-  </div>
-
-  <!-- ABOUT -->
-  <div class="card">
-    <h3>ℹ️ About App</h3>
-    <p>
-      Go Up Follow is a lightweight app designed to help users grow their
-      social presence easily and quickly.
-    </p>
-  </div>
-
-  <!-- DOWNLOAD -->
-  <div class="card download">
-    <h3>⬇ Download APK</h3>
-
-    <button class="btn latest" onclick="downloadLatest()">
-      Download Latest Version (2.1)
-    </button>
-    <div class="count">Downloads: <span id="latest21">...</span></div>
-
-    <hr style="opacity:0.2;margin:15px 0">
-
-    <button class="btn old" onclick="downloadOld20()">
-      Download Old Version (2.0)
-    </button>
-    <div class="count">Downloads: <span id="old20">...</span></div>
-
-    <button class="btn old" onclick="downloadV10()">
-      Download Old Version (1.0)
-    </button>
-    <div class="count">Downloads: <span id="v10">...</span></div>
-  </div>
-
-</div>
-
-<script src="script.js"></script>
-</body>
-</html>
